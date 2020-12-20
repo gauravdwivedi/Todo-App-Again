@@ -1,0 +1,6 @@
+.app-bdy {
+  display: flex;
+  flex-direction: row;
+  margin: 1%;
+  justify-content: space-between;
+}
