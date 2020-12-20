@@ -27,10 +27,17 @@ export default function App() {
             setCompletedTasks(newList)
         }
 
+        const handleSaveButton=(term,task)=>{
+            console.log('save edit',term)
+
+            let indexOfTask = tasks.indexOf(task)
+            let newList = tasks
+            newList[indexOfTask]=term
+            console.log(newList)
+            setTasks(newList)
+        }
+       
         const handleOnClickCheckbox=(task)=>{
-                
-
-
                 setCompletedTasks([...completedTasks,task])
 
                 let newTasks = tasks.filter(item=>item!=task)
@@ -38,8 +45,8 @@ export default function App() {
                 setTasks(newTasks)
         }
 
-        console.log(completedTasks)
-    
+        
+
     return (
         <div>
             <form onSubmit={(e)=>handleOnSubmit(e)} className="ui fluid segment action input">
@@ -47,7 +54,12 @@ export default function App() {
                 <button className="button ui"><i className="save icon"></i></button>
             </form>
             <div className="ui segement app-bdy">
-                 <Tasks  tasks={tasks} handleOnClickCheckbox={handleOnClickCheckbox} handleDeleteButton={handleDeleteButton}/>
+                 <Tasks
+                  tasks={tasks} 
+                  handleOnClickCheckbox={handleOnClickCheckbox} 
+                  handleDeleteButton={handleDeleteButton}
+                  handleSaveButton={handleSaveButton}
+                  />
                  <Completed handleDeleteButton={handleCompletedDeleteButton} tasks={completedTasks} handleOnClickCheckbox={handleOnClickCheckbox}/>
                </div> 
         </div>

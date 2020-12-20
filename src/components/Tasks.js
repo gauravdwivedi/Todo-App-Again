@@ -1,10 +1,15 @@
-import React from 'react'
+import React,{useState} from 'react'
 import TaskItem from './TaskItem'
 import './Tasks.css'
 
-function Tasks({tasks,handleOnClickCheckbox,handleDeleteButton}) {
+function Tasks({tasks,handleOnClickCheckbox,handleDeleteButton,handleSaveButton}) {
         const renderedList = tasks.map((item)=>{
-            return <div><TaskItem task={item} handleDeleteButton={handleDeleteButton} handleOnClickCheckbox={handleOnClickCheckbox}/>
+            return <div key={item}><TaskItem task={item} 
+            
+            handleDeleteButton={handleDeleteButton} 
+            handleOnClickCheckbox={handleOnClickCheckbox}
+            handleSaveButton={handleSaveButton}
+            />
                 </div>
                 
         })
