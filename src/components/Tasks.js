@@ -1,23 +1,24 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import TaskItem from './TaskItem'
 import './Tasks.css'
 
 function Tasks({tasks,handleOnClickCheckbox,handleDeleteButton,handleSaveButton}) {
-        const renderedList = tasks.map((item)=>{
-            return <div key={item}><TaskItem task={item} 
+   
+   
+
+    console.log('Inside tasks.js',tasks)
+    return (
+        <div className="tasks-body">
+            <label>Todo Items</label>
+            {tasks.map((item)=>(
+             <div key={item}><TaskItem task={item} 
             
             handleDeleteButton={handleDeleteButton} 
             handleOnClickCheckbox={handleOnClickCheckbox}
             handleSaveButton={handleSaveButton}
             />
-                </div>
-                
-        })
-    console.log(tasks)
-    return (
-        <div className="tasks-body">
-            <label>Todo Items</label>
-            {renderedList}
+                </div>)
+            )}
         </div>
     )
 }

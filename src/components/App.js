@@ -8,6 +8,8 @@ export default function App() {
     const [task,setTask]= useState('')
     const [completedTasks,setCompletedTasks]=useState([])
 
+    console.log('This is tasks ',tasks)
+
     const  handleOnSubmit=(e)=>{
         e.preventDefault();
             setTasks([...tasks,task])
@@ -34,14 +36,31 @@ export default function App() {
             let newList = tasks
             newList[indexOfTask]=term
             console.log(newList)
-            setTasks(newList)
-        }
+            
+            
+            //important
+            //functional setState hooks
+            setTasks((prevState)=>(
+                prevState.map(t=>{
+                    if(t===task){
+                    
+                        return term   
+                    
+                    }else{
+                         
+                        return t
+                    }
+                })
+            )
+            )
+            }
        
         const handleOnClickCheckbox=(task)=>{
                 setCompletedTasks([...completedTasks,task])
 
                 let newTasks = tasks.filter(item=>item!==task)
                 console.log(newTasks)
+            
                 setTasks(newTasks)
         }
 
