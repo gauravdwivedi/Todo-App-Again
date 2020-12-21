@@ -16,14 +16,14 @@ export default function App() {
     
         const handleDeleteButton=(task)=>{
             
-            let newList = tasks.filter(item=>item!=task)
+            let newList = tasks.filter(item=>item!==task)
             setTasks(newList)
         }
 
 
         const handleCompletedDeleteButton=(task)=>{
 
-            let newList = completedTasks.filter(item=>item!=task)
+            let newList = completedTasks.filter(item=>item!==task)
             setCompletedTasks(newList)
         }
 
@@ -40,7 +40,7 @@ export default function App() {
         const handleOnClickCheckbox=(task)=>{
                 setCompletedTasks([...completedTasks,task])
 
-                let newTasks = tasks.filter(item=>item!=task)
+                let newTasks = tasks.filter(item=>item!==task)
                 console.log(newTasks)
                 setTasks(newTasks)
         }
