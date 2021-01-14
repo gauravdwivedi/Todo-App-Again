@@ -1,26 +1,31 @@
-import React,{useState,useEffect} from 'react'
+import React from 'react'
 import TaskItem from './TaskItem'
+
+import { connect } from 'react-redux';
+
+
+
 import './Tasks.css'
 
-function Tasks({tasks,handleOnClickCheckbox,handleDeleteButton,handleSaveButton}) {
+function Tasks(props) {
    
-   
+   console.log(props);
 
-    console.log('Inside tasks.js',tasks)
     return (
         <div className="tasks-body">
             <label>Todo Items</label>
-            {tasks.map((item)=>(
-             <div key={item}><TaskItem task={item} 
-            
-            handleDeleteButton={handleDeleteButton} 
-            handleOnClickCheckbox={handleOnClickCheckbox}
-            handleSaveButton={handleSaveButton}
-            />
+            {props.todos.map((item)=>(
+             <div key={item.id}><TaskItem task={item} />
                 </div>)
             )}
         </div>
     )
 }
 
-export default Tasks
+const mapStateToProps =(state)=>({
+    todos: state.todos.data
+})
+
+
+
+export default connect(mapStateToProps)(Tasks);

@@ -1,18 +1,27 @@
 import React,{useState,useEffect} from 'react'
 import Tasks from './Tasks'
 import Completed from './Completed'
+
+import {connect} from 'react-redux';
+import { createTodo } from '../actions';
+
 import './App.css'
-export default function App() {
+
+
+const App=(props)=> {
 
     const [tasks,setTasks]= useState([])
     const [task,setTask]= useState('')
     const [completedTasks,setCompletedTasks]=useState([])
 
-    console.log('This is tasks ',tasks)
+    console.log('This is tasks ',)
 
     const  handleOnSubmit=(e)=>{
         e.preventDefault();
-            setTasks([...tasks,task])
+            // setTasks([...tasks,task])
+            const id = Math.random();
+            //dispatching ADD_TODO action
+            props.createTodo(task,id)
             setTask('')
         }
     
@@ -68,19 +77,34 @@ export default function App() {
 
     return (
         <div>
-            <form onSubmit={(e)=>handleOnSubmit(e)} className="ui fluid segment action input">
-                <input onChange={(e)=>setTask(e.target.value)} value={task} type="text" placeholder="Enter Todo" />
-                <button className="button ui"><i className="save icon"></i></button>
+            <form
+                onSubmit={(e)=>handleOnSubmit(e)}
+                className="ui fluid segment action input" >
+
+                <input 
+                        onChange={(e)=>setTask(e.target.value)}
+                        value={task}
+                        type="text"
+                        placeholder="Enter Todo"
+                />
+                
+                <button 
+                        className="button ui">
+                            <i className="save icon"></i>
+                </button>
             </form>
-            <div className="ui segement app-bdy">
-                 <Tasks
-                  tasks={tasks} 
-                  handleOnClickCheckbox={handleOnClickCheckbox} 
-                  handleDeleteButton={handleDeleteButton}
-                  handleSaveButton={handleSaveButton}
-                  />
-                 <Completed handleDeleteButton={handleCompletedDeleteButton} tasks={completedTasks} handleOnClickCheckbox={handleOnClickCheckbox}/>
-               </div> 
+           
+        <div 
+            className="ui segement app-bdy" >
+                 
+                 <Tasks />
+                 
+                {/* <Completed/> */}
+        
+        </div> 
         </div>
     )
 }
+
+
+export default connect( null, { createTodo})(App);
