@@ -43,15 +43,15 @@ function TaskItem(props) {
                 <div>
              
                 {edit ? <button onClick={()=>handleSave(task)}
-                        className="ui button">
-                    <i className="save icon"></i>
+                        className="ui button blue">
+                    <i className="save icon "></i>
                 </button> :<button onClick={()=>handleEditBtn(task)}
-                className="ui button">
+                className="ui button green">
                     <i className="edit icon"></i>
                 </button>}
 
                 <button  onClick={()=>handleDeleteButton(task)}
-                         className="ui button">
+                         className="ui button red">
                     <i className="trash icon"></i>
                 </button></div>
         </div>

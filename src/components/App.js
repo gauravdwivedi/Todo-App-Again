@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import Tasks from './Tasks'
 import Completed from './Completed'
 import './App.css'
@@ -21,7 +21,6 @@ export default function App() {
             let newList = tasks.filter(item=>item!==task)
             setTasks(newList)
         }
-
 
         const handleCompletedDeleteButton=(task)=>{
 
@@ -54,6 +53,7 @@ export default function App() {
             )
             )
             }
+
        
         const handleOnClickCheckbox=(task)=>{
                 setCompletedTasks([...completedTasks,task])
@@ -70,7 +70,7 @@ export default function App() {
         <div>
             <form onSubmit={(e)=>handleOnSubmit(e)} className="ui fluid segment action input">
                 <input onChange={(e)=>setTask(e.target.value)} value={task} type="text" placeholder="Enter Todo" />
-                <button className="button ui"><i className="save icon"></i></button>
+                <button className="button ui blue"><i className="save icon"></i></button>
             </form>
             <div className="ui segement app-bdy">
                  <Tasks
@@ -79,7 +79,9 @@ export default function App() {
                   handleDeleteButton={handleDeleteButton}
                   handleSaveButton={handleSaveButton}
                   />
-                 <Completed handleDeleteButton={handleCompletedDeleteButton} tasks={completedTasks} handleOnClickCheckbox={handleOnClickCheckbox}/>
+                 <Completed handleDeleteButton={handleCompletedDeleteButton} 
+                 tasks={completedTasks} 
+                 handleOnClickCheckbox={handleOnClickCheckbox}/>
                </div> 
         </div>
     )
